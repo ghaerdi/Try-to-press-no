@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>plsssssss!!</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #faacea;
+  font-family: 'Dancing Script', cursive;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  width: 60vw;
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  margin-top: 10px;
+}
+
+.btns .answer-btn {
+  text-decoration: none;
+  outline: none;
+  padding: 10px 20px;
+  background-color: #6c9174;
+  border: none;
+  border-radius: 2.5px;
+  color: white;
+}
+
+#no-btn {
+  background-color: #85515c;
+}
+
+</style>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Will you be my girlfriend?</h2>
+      <div class="btns">
+        <button class="answer-btn" id="yes-btn">Yes</button>
+        <button class="answer-btn" id="no-btn">No</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const buttons = document.querySelectorAll(".answer-btn");
+  const yesBtn = document.querySelector("#yes-btn");
+  const noBtn = document.querySelector("#no-btn");
+
+  buttons.forEach(btn =>
+    btn.addEventListener("click", () => alert("YES! I LOVE YOU! <3")));
+
+  let trys = 0;
+  let screenLimit = 40;
+
+  ["mouseenter", "mouseleave"].forEach(event =>
+    noBtn.addEventListener(event, function(e) {
+      let dontMoveBtn = trys > 5 && !randomNumber(50);
+      event === "mouseenter" ? changeToYesBtn(noBtn) : changeToNoBtn(noBtn);
+
+      if (event === "mouseenter" && !dontMoveBtn) {
+          let positionX = randomNumber(screenLimit) * plusOrMinus();
+          let positionY = randomNumber(screenLimit) * plusOrMinus();
+
+        noBtn.style.transform = `translate(${positionX}vw, ${positionY}vh)`;
+        trys++;
+        screenLimit &&= screenLimit - 0.1;
+      }
+    })
+  );
+
+  ["focus", "focusout"].forEach(event =>
+    noBtn.addEventListener(event, function(e) {
+      event === "focus" ? changeToYesBtn(noBtn) : changeToNoBtn(noBtn);
+    })
+  );
+
+  function changeToYesBtn(btn) {
+    btn.innerHTML = "Yes";
+    btn.style.background = "#6c9174";
+  }
+
+  function changeToNoBtn(btn) {
+    btn.innerHTML = "No";
+    btn.style.background = "#85515c";
+  }
+
+  const randomNumber = limit => Math.floor((Math.random() * limit) + 0);
+  const plusOrMinus = () => Math.round(Math.random()) * 2 - 1;
+</script>
+
+</html>
