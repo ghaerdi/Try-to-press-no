@@ -42,3 +42,18 @@
 #no-btn {
   background-color: #85515c;
 }
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  width: 90vw;
+  margin: auto;
+}
+
+footer a {
+  font-size: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}

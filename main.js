@@ -41,7 +41,7 @@ const plusOrMinus = () => Math.round(Math.random()) * 2 - 1;
 const toggleButton = (button, actualEvent, desiredEvent) =>
   actualEvent === desiredEvent ? changeToYesButton(button) : changeToNoButton(button);
 
-function main() {
+function buttonHandler() {
   const answerButtons = document.querySelectorAll(".answer-btn");
   const yesButton = document.querySelector("#yes-btn");
   const noButton = document.querySelector("#no-btn");
@@ -51,6 +51,10 @@ function main() {
 
   changeButtonPosition(noButton);
   focusButton(noButton);
+}
+
+function main() {
+  buttonHandler();
 }
 
 main();
