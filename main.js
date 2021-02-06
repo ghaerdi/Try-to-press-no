@@ -1,5 +1,5 @@
 function changeButtonPosition(button) {
-  let screenLimit = 40;
+  let screenLimit = 54;
 
   for (let event of ["mouseenter", "mouseleave"]) {
     button.addEventListener(event, function() {
@@ -7,12 +7,12 @@ function changeButtonPosition(button) {
 
       if (event === "mouseenter") {
         let positionX = randomNumber(screenLimit) * plusOrMinus();
-        let positionY = randomNumber(screenLimit) * plusOrMinus();
+        positionX = positionX < 40 ? positionX : positionX * -1;
+        let positionY = randomNumber(screenLimit < 40 ? screenLimit : 40) * plusOrMinus();
 
         button.style.transform = `translate(${positionX}vw, ${positionY}vh)`;
 
         screenLimit &&= screenLimit - 0.25;
-        console.log(screenLimit);
 
       }
     })
@@ -36,7 +36,7 @@ function changeToNoButton(button) {
   button.style.background = "#85515c";
 }
 
-const randomNumber = limit => Math.floor((Math.random() * limit) + 0);
+const randomNumber = limit => Math.floor((Math.random() * limit));
 const plusOrMinus = () => Math.round(Math.random()) * 2 - 1;
 const toggleButton = (button, actualEvent, desiredEvent) =>
   actualEvent === desiredEvent ? changeToYesButton(button) : changeToNoButton(button);
